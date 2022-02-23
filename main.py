@@ -28,9 +28,9 @@ def navegador():
     # login no sistema
     nav.get('http://138.0.140.51:5660/issweb/paginas/login;jsessionid=i7116Yt6Md6IPNX8AcxXFOMJ.undefined')
     sleep(1)
-    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('34894404000198', Keys.TAB)
+    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('Username', Keys.TAB)
     sleep(2)
-    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Gui090503', Keys.ENTER)
+    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Password', Keys.ENTER)
     sleep(5)
     nav.find_element(By.XPATH, '//*[@id="navNfse"]/a').click()
     nav.find_element(By.XPATH, '//*[@id="j_idt88:layoutNfs"]').click()
@@ -54,10 +54,10 @@ def navegador():
     # Discriminação dos Serviços
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:descricaoItem"]').send_keys(desc)  # descrição
     sleep(2)
-    nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:vlrUnitario_input"]').send_keys(Keys.CONTROL,
-                                                                                                   "a")  # valor
+    nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:vlrUnitario_input"]').send_keys(Keys.CONTROL, 
+                                                                                                                "a")  # valor
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:vlrUnitario_input"]').send_keys(precosvc,
-                                                                                                   Keys.TAB)  # valor
+                                                                                                             Keys.TAB)  # valor
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:btnAddItem"]/span[2]').click()  # add desc
     sleep(2)
 
@@ -68,7 +68,7 @@ def navegador():
     pyautogui.click(x=507, y=882)
     text_obs = f'Documento referente a Ordem de compra {compra}, NF de remessa {remessa} e NF de retorno de remessa {ordem}. Dados para deposito: Bando Bradesco, Agencia 020-5, Conta corrente 3706-0'
     pyautogui.write(text_obs)
-    sleep(100000)
+    sleep(36000)
 
 
 app = Tk()
@@ -76,7 +76,7 @@ app = Tk()
 fontStyle = tkFont.Font(family="Lucida Grande", size=15)
 buttonStyle = tkFont.Font(family="Lucida Grande", size=20)
 
-app.geometry('450x400')
+app.geometry('390x350')
 app.configure(bg='white')
 lb = Label(app, text='Ordem de compra', background='white', font=fontStyle)
 lb.place(x=1, y=1)
