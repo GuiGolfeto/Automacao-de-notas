@@ -1,7 +1,5 @@
 from tkinter import *
 import tkinter.font as tkFont
-from typing_extensions import Self
-from xml.dom.pulldom import END_ELEMENT
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -14,19 +12,23 @@ import pyautogui
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
-class btclick0:
-    def btclick(self, END):
-        global compra
-        compra = txt1.get(END)
-        print(compra)
-        global remessa
-        remessa = txt2.get(END)
-        global ordem
-        ordem = txt3.get(END)
-        global desc
-        desc = txt5.get(END)
-        global precosvc
-        precosvc = txt4.get(END)
+
+def btclick(*args):
+    global compra
+    compra = txt1.get(args)
+    print(compra)
+    global remessa
+    remessa = txt2.get(args)
+    print(remessa)
+    global ordem
+    ordem = txt3.get(args)
+    print(ordem)
+    global desc
+    desc = txt5.get(args)
+    print(desc)
+    global precosvc
+    precosvc = txt4.get(args)
+    print(precosvc)
 
 
 
@@ -94,7 +96,6 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-empObj = btclick0()
 window.geometry("862x519")
 window.configure(bg = "#FFFFFF")
 
@@ -285,7 +286,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: empObj.btclick(txt1, txt2, txt3, txt4, txt5),
+    command=lambda:btclick(),
     relief="flat"
 )
 button_1.place(
