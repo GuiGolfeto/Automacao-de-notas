@@ -1,24 +1,41 @@
 from tkinter import *
 import tkinter.font as tkFont
+from xml.dom.pulldom import END_ELEMENT
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+
 from time import sleep
 import pyautogui
+
+
+from pathlib import Path
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 def btclick():
     global compra
     compra = txt.get('1.0', 'end-1c')
+    print(compra)
     global remessa
     remessa = txt2.get('1.0', 'end-1c')
+    print(remessa)
     global ordem
     ordem = txt3.get('1.0', 'end-1c')
+    print(ordem)
     global desc
-    desc = txt4.get('1.0', 'end-1c')
+    desc = txt5.get('1.0', 'end-1c')
+    print(desc)
     global precosvc
-    precosvc = txt5.get('1.0', 'end-1c')
+    precosvc = txt4.get('1.0', 'end-1c')
+    print(precosvc)
+
+
+
+
+
+
 
 
 def navegador():
@@ -28,9 +45,9 @@ def navegador():
     # login no sistema
     nav.get('http://138.0.140.51:5660/issweb/paginas/login;jsessionid=i7116Yt6Md6IPNX8AcxXFOMJ.undefined')
     sleep(1)
-    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('Username', Keys.TAB)
+    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('34894404000198', Keys.TAB)
     sleep(2)
-    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Password', Keys.ENTER)
+    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Gui090503', Keys.ENTER)
     sleep(5)
     nav.find_element(By.XPATH, '//*[@id="navNfse"]/a').click()
     nav.find_element(By.XPATH, '//*[@id="j_idt88:layoutNfs"]').click()
@@ -64,52 +81,194 @@ def navegador():
     # Observações
     pyautogui.scroll(-1000)
     pyautogui.click(x=1578, y=844)
-    sleep(1)
+    sleep(2)
     pyautogui.click(x=507, y=882)
-    text_obs = f'Documento referente a Ordem de compra {compra}, NF de remessa {remessa} e NF de retorno de remessa {ordem}. Dados para deposito: Bando Bradesco, Agencia 020-5, Conta corrente 3706-0'
+    sleep(2)
+    pyautogui.click(x=507, y=882)
+    sleep(2)
+    text_obs = f'documento referente a ordem de compra {compra} nf de remessa {remessa} e nf de retorno de remessa {ordem} dados para deposito: banco bradesco agencia 020-5, conta corrente 3706-0'
     pyautogui.write(text_obs)
     sleep(36000)
 
 
-app = Tk()
 
-fontStyle = tkFont.Font(family="Lucida Grande", size=15)
-buttonStyle = tkFont.Font(family="Lucida Grande", size=20)
 
-app.geometry('390x350')
-app.configure(bg='white')
-lb = Label(app, text='Ordem de compra', background='white', font=fontStyle)
-lb.place(x=1, y=1)
-txt = Text(app, background='light gray', font=fontStyle, width=17, height=1)
-txt.place(x=185, y=1)
 
-lb2 = Label(app, text='NF de remessa', background='white', font=fontStyle)
-lb2.place(x=1, y=30)
-txt2 = Text(app, background='light gray', font=fontStyle, width=17, height=1)
-txt2.place(x=185, y=30)
 
-lb3 = Label(app, text='NF de Retorno', background='white', font=fontStyle)
-lb3.place(x=1, y=59)
-txt3 = Text(app, background='light gray', font=fontStyle, width=17, height=1)
-txt3.place(x=185, y=59)
 
-lb4 = Label(app, text='Descrição do serviço:', background='white', font=fontStyle)
-lb4.place(x=1, y=120)
-txt4 = Text(app, background='light gray', font=fontStyle, width=25, height=5)
-txt4.place(x=1, y=149)
 
-lb5 = Label(app, text='Preço do serviço', background='white', font=fontStyle)
-lb5.place(x=1, y=89)
-txt5 = Text(app, background='light gray', font=fontStyle, width=17, height=1)
-txt5.place(x=185, y=89)
 
-bt = Button(app, text='Save', command=btclick, font=buttonStyle)
-bt.place(x=1, y=280)
 
-bt2 = Button(app, text='Start', command=navegador, font=buttonStyle)
-bt2.place(x=100, y=280)
 
-bt3 = Button(app, text='Close', command=app.destroy, font=buttonStyle)
-bt3.place(x=200, y=280)
 
-app.mainloop()
+
+
+window = Tk()
+window.geometry("862x519")
+window.configure(bg="#FFFFFF")
+
+font = tkFont.Font(family="Lucida Grande", size=15)
+
+
+OUTPUT_PATH = Path(__file__).parent
+ASSETS_PATH = OUTPUT_PATH / Path("./assets")
+
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
+
+
+canvas = Canvas(
+    window,
+    bg="#FFFFFF",
+    height=519,
+    width=862,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
+)
+
+canvas.place(x=0, y=0)
+canvas.create_rectangle(
+    0.0,
+    0.0,
+    862.0,
+    519.0,
+    fill="#0038FF",
+    outline="")
+
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    431.0,
+    104.0,
+    image=image_image_1
+)
+
+canvas.create_rectangle(
+    55.0,
+    179.0,
+    807.0,
+    509.0,
+    fill="#0038FF",
+    outline="")
+
+canvas.create_text(
+    55.0,
+    189.0,
+    anchor="nw",
+    text="Ordem de compra",
+    fill="#000000",
+    font=("Montserrat Regular", 30 * -1)
+)
+
+txt = Text(window, background='#FFFFFF', width=26, height=1, font=font)
+txt.place(x=350, y=199)
+
+canvas.create_text(
+    55.0,
+    236.0,
+    anchor="nw",
+    text="NF de Remessa",
+    fill="#000000",
+    font=("Montserrat Regular", 30 * -1)
+)
+
+txt2 = Text(window, background='#FFFFFF', width=26, height=1, font=font)
+txt2.place(x=350, y=246)
+
+canvas.create_text(
+    55.0,
+    283.0,
+    anchor="nw",
+    text="NF de Retorno",
+    fill="#000000",
+    font=("Montserrat Regular", 30 * -1)
+)
+
+txt3 = Text(window, background='#FFFFFF', width=26, height=1, font=font)
+txt3.place(x=350, y=294)
+
+canvas.create_text(
+    55.0,
+    330.0,
+    anchor="nw",
+    text="Preço do serviço",
+    fill="#000000",
+    font=("Montserrat Regular", 30 * -1)
+)
+
+txt4 = Text(window, background='#FFFFFF', width=26, height=1, font=font)
+txt4.place(x=350, y=340)
+
+canvas.create_text(
+    55.0,
+    377.0,
+    anchor="nw",
+    text="Descrição do\nserviço",
+    fill="#000000",
+    font=("Montserrat Regular", 30 * -1)
+)
+
+
+txt5 = Text(window, background='#FFFFFF', width=26, height=5, font=font)
+txt5.place(x=350, y=380)
+
+
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: btclick(),
+    relief="flat"
+)
+button_1.place(
+    x=653.0,
+    y=179.0,
+    width=180.0,
+    height=55.0
+)
+
+button_image_2 = PhotoImage(
+    file=relative_to_assets("button_2.png"))
+button_2 = Button(
+    image=button_image_2,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: navegador(),
+    relief="flat"
+)
+button_2.place(
+    x=653.0,
+    y=254.0,
+    width=180.0,
+    height=55.0
+)
+
+button_image_3 = PhotoImage(
+    file=relative_to_assets("button_3.png"))
+button_3 = Button(
+    image=button_image_3,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: window.destroy(),
+    relief="flat"
+)
+button_3.place(
+    x=654.0,
+    y=329.0,
+    width=180.0,
+    height=55.0
+)
+
+window.resizable(False, False)
+window.mainloop()
+
+
+
+
+
+
