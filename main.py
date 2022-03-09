@@ -1,19 +1,24 @@
+# Tkinter imports
 from tkinter import *
 import tkinter.font as tkFont
 from xml.dom.pulldom import END_ELEMENT
+from pathlib import Path
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+
+# Selenium imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
+# pysautogui Imports
 from time import sleep
 import pyautogui
 
 
-from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
+# save variables
 def btclick():
     global compra
     compra = txt.get('1.0', 'end-1c')
@@ -37,12 +42,12 @@ def btclick():
 
 
 
-
+# Automation with Selenium
 def navegador():
     nav = webdriver.Chrome()
     nav.maximize_window()
 
-    # login no sistema
+    # System login
     nav.get('http://138.0.140.51:5660/issweb/paginas/login;jsessionid=i7116Yt6Md6IPNX8AcxXFOMJ.undefined')
     sleep(1)
     nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('34894404000198', Keys.TAB)
@@ -52,23 +57,23 @@ def navegador():
     nav.find_element(By.XPATH, '//*[@id="navNfse"]/a').click()
     nav.find_element(By.XPATH, '//*[@id="j_idt88:layoutNfs"]').click()
 
-    # preenchendo dados da NF
+    # Filling in NF data
     data = nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:imDataEmissao_input"]').get_attribute('value')
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').send_keys(data)
 
-    # Atividade CNAE
+    # CNAE activity
     drop = Select(nav.find_element(By.ID, 'formEmissaoNFConvencional:listaAtvCnae_input'))
     drop.select_by_visible_text("4520001 - Serviços de manutenção e reparação mecânica de veículos automotores")
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:listaAtvCnae_label"]').click()
     sleep(0.7)
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:listaAtvCnae_label"]').click()
 
-    # Atividade Municipal
+    # Municipal Activity
     drop2 = Select(nav.find_element(By.ID, 'formEmissaoNFConvencional:listaAtvAtd_input'))
     drop2.select_by_value('000014;0000001')
     sleep(2)
 
-    # Discriminação dos Serviços
+    # Services discrimination
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:descricaoItem"]').send_keys(desc)  # descrição
     sleep(2)
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:vlrUnitario_input"]').send_keys(Keys.CONTROL, 
@@ -78,7 +83,7 @@ def navegador():
     nav.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:btnAddItem"]/span[2]').click()  # add desc
     sleep(2)
 
-    # Observações
+    # Comments
     pyautogui.scroll(-1000)
     pyautogui.click(x=1578, y=844)
     sleep(2)
@@ -102,7 +107,7 @@ def navegador():
 
 
 
-
+# Software window using TKinter
 window = Tk()
 window.geometry("862x519")
 window.configure(bg="#FFFFFF")
@@ -266,9 +271,3 @@ button_3.place(
 
 window.resizable(False, False)
 window.mainloop()
-
-
-
-
-
-
