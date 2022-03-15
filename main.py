@@ -22,19 +22,14 @@ import pyautogui
 def btclick():
     global compra
     compra = txt.get('1.0', 'end-1c')
-    print(compra)
     global remessa
     remessa = txt2.get('1.0', 'end-1c')
-    print(remessa)
     global ordem
     ordem = txt3.get('1.0', 'end-1c')
-    print(ordem)
     global desc
     desc = txt5.get('1.0', 'end-1c')
-    print(desc)
     global precosvc
     precosvc = txt4.get('1.0', 'end-1c')
-    print(precosvc)
 
 
 
