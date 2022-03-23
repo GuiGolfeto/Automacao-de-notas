@@ -45,9 +45,9 @@ def navegador():
     # System login
     nav.get('http://138.0.140.51:5660/issweb/paginas/login;jsessionid=i7116Yt6Md6IPNX8AcxXFOMJ.undefined')
     sleep(1)
-    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('34894404000198', Keys.TAB)
+    nav.find_element(By.XPATH, '//*[@id="username"]').send_keys('Ursername', Keys.TAB)
     sleep(2)
-    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Gui090503', Keys.ENTER)
+    nav.find_element(By.XPATH, '//*[@id="password"]').send_keys('Password', Keys.ENTER)
     sleep(5)
     nav.find_element(By.XPATH, '//*[@id="navNfse"]/a').click()
     nav.find_element(By.XPATH, '//*[@id="j_idt88:layoutNfs"]').click()
